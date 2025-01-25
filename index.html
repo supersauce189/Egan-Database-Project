@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <meta charset="UTF-8">
+    <title>Home - Mile Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="index.css">
+	<script type="text/javascript" src="sidebar.js" defer></script>
+</head>
+  <body>
+    <nav>
+      <button id="openSidebar"><i class="fas fa-bars icon"></i></button>
+      <img id="logo" src="Assets/logo.png" alt="Egan logo">
+      <ul class="sidebar">
+        <li><button id="closeSidebar"><i class="fas fa-times"></i></button></li>
+        <li><a class="active" href="index.html">Home</a></li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>
+        <li><a href="myStats.html">My Stats</a></li>
+      </ul>
+      <ul class="actual">
+        <li><a class="active" href="index.html">Home</a></li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>
+        <li><a href="myStats.html">My Stats</a></li>
+      </ul>
+    </nav>
+    <div class="flex-column">
+      <div class="text">
+        <h1>RUNNING</h1>
+        <div class="flex">
+          <button onclick="window.location.href='leaderboard.html'" id="first">Leaderboard</a>
+          <button onclick="window.location.href='myStats.html'" id="second">Individual</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

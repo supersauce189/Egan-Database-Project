@@ -1,0 +1,214 @@
+/* Form */
+:root {
+    --accent-color: #FFBF00;
+    --base-color: white;
+    --text-color: #2E2B41;
+    --input-color: #F3F0FF;
+}
+* {
+    color: var(--text-color);
+}
+body {
+    min-height: 100vh;
+}
+.wrapper {
+    background-color: var(--base-color);
+    padding: 10px;
+    border-radius: 0 20px 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+h1 {
+    font-size: 2.75vw;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+}
+form {
+    width: min(400px, 100%);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+} 
+form > div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+form label {
+    flex-shrink: 0;
+    height: 50px;
+    width: 50px;
+    background-color: var(--accent-color);
+    color: var(--base-color);
+    border-radius: 10px 0 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2vw;
+    font-weight: 500;
+}
+svg {
+    fill: var(--base-color);
+}
+form input {
+    box-sizing: border-box;
+    flex-grow: 1;
+    min-width: 0;
+    height: 50px;
+    padding: 1em;
+    font: inherit;
+    border-radius: 0 10px 10px 0;
+    border: 2px solid var(--input-color);
+    border-left: none;
+    background-color: var(--input-color);
+    transition: 150ms ease;
+}
+form input:hover {
+    border-color: var(--accent-color);
+}
+form input:focus {
+    outline: none;
+    border-color: var(--text-color);
+}
+div:has(input:focus) > label {
+    background-color: var(--text-color);
+}
+form input::placeholder {
+    color: var(--text-color);
+}
+form button {
+    margin-top: 10px;
+    border: none;
+    border-radius: 1000px;
+    padding: 0.85em 4em;
+    background-color: var(--accent-color);
+    color: var(--base-color);
+    font: inherit;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 150ms ease;
+}
+form button:hover {
+    background-color: var(--text-color);
+}
+form button:focus {
+    outline: none;
+    background-color: var(--text-color);
+}
+form div.incorrect label {
+    background-color: #f06272;
+}
+form div.incorrect input {
+    border-color: #f06272;
+}
+#error-message {
+    color: #f06272;
+}
+/* Actual Content */
+#actualContent {
+    display: none;
+}
+/* Nav Bar */
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+    margin-bottom: 2%;
+}
+.navbar a {
+    margin-top: 30px;
+    text-decoration: none;
+    color: black;
+    font-size: 1.15vw;
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+}
+.navbar a.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: black;
+    transition: width 0.3s ease-in-out;
+}
+.navbar a:not(.active)::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: black;
+    transition: width 0.3s ease-in-out;
+}
+.navbar a:hover:not(.active)::after {
+    width: 100%;
+}
+/* Chart */
+#actualContent {
+    width: 100%;
+}
+.flex {
+    display: flex;
+    gap: 10%;
+    margin-bottom: 3%;
+}
+canvas {
+    margin-left: 5%;
+    width: 40vw !important;
+    height: 18vw !important;
+}
+/* Right Text */
+.current {
+    font-size: 1.25rem;
+    width: 40%;
+    margin-right: 5%;
+}
+h2 {
+    margin-bottom: 3%;
+}
+.current p {
+    margin: 1% 0;
+}
+hr {
+    margin: 3% 0;
+}
+/* Table */
+table {
+    width: 70%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+thead tr:first-of-type {
+    margin-bottom: 50px;
+    font-size: 1.3vw;
+    background-color: #ffcc00;
+    color: white;
+}
+th {
+    padding: 12px;
+    text-align: center;
+    color: white;
+}
+td {
+    text-align: center;
+    padding: 15px;
+    font-size: 1.1vw;
+    border-bottom: 1px solid #ddd;
+}
+/* No Information Heading */
+#noInfo {
+    display: none;
+    color: #f06272;
+}

@@ -1,0 +1,44 @@
+.text {
+    background-image: url("Assets/running.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100vw;
+    height: calc(100vh - 0px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.text h1, .text p {
+    color: white;
+    text-align: center;
+}
+.text h1 {
+    font-size: 5.8vw;
+    padding-top: 13%;
+}
+.text .flex {
+    justify-content: center;
+    display: flex;
+}
+#first, #second {
+    margin-top: 5%;
+    padding: 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 1.5vw;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#first {
+    border: none;
+    background: none;
+    margin-right: 2%;
+    background-color: #FFBF00;
+}
+#second {
+    background-color: #4171ED;
+    border: none;
+    padding: 15px 30px;
+}

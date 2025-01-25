@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <meta charset="UTF-8">
+    <title>Home - Mile Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="leaderboard.css">
+    <script type="text/javascript" src="sidebar.js" defer></script>
+    <script type="text/javascript" src="leaderboard.js" defer></script>
+  </head>
+  <body>
+    <nav>
+      <button id="openSidebar"><i class="fas fa-bars icon"></i></button>
+      <img id="logo" src="Assets/logo.png" alt="Egan logo">
+      <ul class="sidebar">
+        <li><button id="closeSidebar"><i class="fas fa-times"></i></button></li>
+        <li class="active"><a href="index.html">Home</a></li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>
+        <li><a href="myStats.html">My Stats</a></li>
+      </ul>
+      <ul class="actual">
+        <li><a href="index.html">Home</a></li>
+        <li><a class="active" href="leaderboard.html">Leaderboard</a></li>
+        <li><a href="myStats.html">My Stats</a></li>
+      </ul>
+    </nav>
+    <form>
+      <section class="type-dropdown">
+        <label for="leaderboard">Leaderboard Type <span style="color: red">(Required)</span></label>
+        <select name="leaderboard" id="leaderboard">
+          <option value="fastest-1-lap">Fastest 1-Lap Time</option>
+          <option value="average-1-lap">Average 1-Lap Time</option>
+          <option value="fastest-2-lap">Fastest 2-Lap Time</option>
+          <option value="average-2-lap">Average 2-Lap Time</option>
+          <option value="fastest-mile">Fastest Mile Time</option>
+          <option value="average-mile">Average Mile Time</option>
+        </select>
+      </section>
+      <section class="gender-dropdown">
+        <label for="gender">Gender:</label>
+        <select name="gender" id="gender">
+          <option value="" selected>Select an option</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+      </section>
+      <section class="grade-dropdown">
+        <label for="grade">Grade:</label>
+        <select name="grade" id="grade">
+          <option value="" selected>Select an option</option>
+          <option value="seven">7</option>
+          <option value="eight">8</option>
+        </select>
+      </section>
+      <section class="period-dropdown">
+        <label for="period">Period:</label>
+        <select name="period" id="period">
+          <option value="" selected>Select an option</option>
+          <option value="one">1</option>
+          <option value="two">2</option>
+          <option value="three">3</option>
+          <option value="four">4</option>
+          <option value="five">5</option>
+          <option value="six">6</option>
+          <option value="seven">7</option>
+        </select>
+      </section>
+      <section class="teacher-dropdown">
+        <label for="teacher">Teacher:</label>
+        <select name="teacher" id="teacher">
+          <option value="" selected>Select an option</option>
+          <option value="troyer">Troyer</option>
+          <option value="youlee">Youlee</option>
+          <option value="huynh">Huynh</option>
+          <option value="valencia">Valencia</option>
+          <option value="kesselring">Kesselring</option>
+        </select>
+      </section>
+    </form>
+    <h1 id="heading">Leaderboard</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Overall Rank</th>
+          <th>Name</th>
+          <th>Time</th>
+          <th id="date">Date</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </body>
+</html>

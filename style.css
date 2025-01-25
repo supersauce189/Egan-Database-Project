@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+    font-family: "Poppins", "Segoe UI", sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Prevent scrolling if content exceeds viewport */
+}
+nav {
+    padding: 15px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#logo {
+    width: 25vw;
+}
+ul {
+    display: flex;
+    list-style-type: none;
+}
+nav li {
+    padding: 10px 20px;
+    font-size: 1.3vw;
+}
+li a {
+    text-decoration: none;
+    color: rgb(151, 151, 151);
+}
+a.active {
+    color: black;
+}
+a:hover {
+    color: #4171ED;
+    cursor: pointer;
+}
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 250px;
+    z-index: 999;
+    background-color: rgba(255, 255, 255, 0.027);
+    backdrop-filter: blur(10px);
+    box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.sidebar li {
+    width: 100%;
+}
+.sidebar a {
+    width: 100%;
+}
+#openSidebar {
+    display: none;
+    color: black;
+    text-decoration: none;
+    font-size: 30px;
+}
+#openSidebar, #closeSidebar {
+    background: none;
+    border: none;
+}
+#closeSidebar {
+    font-size: 30px;
+}
