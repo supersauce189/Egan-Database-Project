@@ -166,8 +166,8 @@ form div.incorrect input {
 }
 canvas {
     margin-left: 5%;
-    width: 40vw;
-    height: 18vw;
+    width: 40vw !important;
+    height: 18vw !important;
 }
 /* Right Text */
 .current {
@@ -223,7 +223,6 @@ td {
     .flex {
         flex-direction: column;
         gap: 20px;
-        width: 90vw;
     }
     form {
         padding: 0;
@@ -234,7 +233,7 @@ td {
     }
     canvas {
         width: 85vw !important;
-        margin: 0 7.5vw !important;
+        height: 20vh !important;
     }
     .current {
         width: 85vw !important;

@@ -269,7 +269,7 @@ async function showStats(type) {
     type: 'line', // Chart type
     data: data,
     options: {
-        responsive: false,
+        responsive: true,
         maintainAspectRatio: true,
         plugins: {
           legend: {

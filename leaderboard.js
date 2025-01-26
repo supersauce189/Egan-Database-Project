@@ -1,3 +1,7 @@
+// Phone Dropdown Menu
+document.querySelector('#dropdown-trigger').addEventListener('click', () => {
+  document.querySelector("form").classList.toggle('open');
+});
 // Editing first table heading on phone screen
 const first = document.querySelector("thead tr th");
 first.innerText = "Rank";

@@ -30,6 +30,9 @@ td {
     border-bottom: 1px solid #ddd;
 }
 /* Form */
+#dropdown-trigger {
+    display: none;
+}
 form {
     margin-top: 20px;
     display: flex;
@@ -62,12 +65,32 @@ select {
         width: 90vw;
         margin: auto;
     }
-    form {
+    #dropdown-trigger {
         display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        color: gray;
+    }
+    svg {
+        display: flex;
+        align-items: center;
+        fill: gray;
+        margin-right: 10px;
+    }
+    form {
+        transition: max-height 1s ease-out, opacity 1s ease-out;
+        overflow: hidden;
+        max-height: 0;
         flex-direction: column;
+        margin-top: 0;
+    }
+    form.open {
+        display: flex;
+        max-height: 100vh;
     }
     h1 {
         font-size: 35px;
+        margin-top: 10px;
     }
     table {
         width: 90vw;
