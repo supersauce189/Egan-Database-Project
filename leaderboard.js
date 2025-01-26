@@ -1,3 +1,6 @@
+// Editing first table heading on phone screen
+const first = document.querySelector("thead tr th");
+first.innerText = "Rank";
 // Changing leaderboard on dropdown change
 const dropdowns = document.querySelectorAll("select");
 dropdowns.forEach(dropdown => {

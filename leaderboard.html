@@ -3,6 +3,7 @@
   <head>
     <base target="_top">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard - Running Tracker</title>
     <link rel="icon" href="Assets/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,23 +17,23 @@
   </head>
   <body>
     <nav>
-      <button id="openSidebar"><i class="fas fa-bars icon"></i></button>
       <img id="logo" src="Assets/logo.png" alt="Egan logo">
+      <button id="openSidebar"><i class="fas fa-bars icon"></i></button>
       <ul class="sidebar">
         <li><button id="closeSidebar"><i class="fas fa-times"></i></button></li>
-        <li class="active"><a href="index.html">Home</a></li>
+        <li><a class="active" href="index.html">Home</a></li>
         <li><a href="leaderboard.html">Leaderboard</a></li>
         <li><a href="myStats.html">My Stats</a></li>
       </ul>
       <ul class="actual">
-        <li><a href="index.html">Home</a></li>
-        <li><a class="active" href="leaderboard.html">Leaderboard</a></li>
+        <li><a class="active" href="index.html">Home</a></li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>
         <li><a href="myStats.html">My Stats</a></li>
       </ul>
     </nav>
     <form>
       <section class="type-dropdown">
-        <label for="leaderboard">Leaderboard Type <span style="color: red">(Required)</span></label>
+        <label for="leaderboard">Leaderboard</label>
         <select name="leaderboard" id="leaderboard">
           <option value="fastest-1-lap">Fastest 1-Lap Time</option>
           <option value="average-1-lap">Average 1-Lap Time</option>
@@ -88,7 +89,7 @@
     <table>
       <thead>
         <tr>
-          <th>Overall Rank</th>
+          <th id="rank">Overall Rank</th>
           <th>Name</th>
           <th>Time</th>
           <th id="date">Date</th>

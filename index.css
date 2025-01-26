@@ -1,5 +1,5 @@
 .text {
-    background-image: url("Assets/running.png");
+    background-image: url("Assets/running.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
@@ -41,4 +41,16 @@
     background-color: #4171ED;
     border: none;
     padding: 15px 30px;
+}
+@media screen and (max-width: 768px) {
+    .flex-column {
+        align-items: center;
+    }
+    .text h1 {
+        font-size: 60px;
+        margin-top: 40%;
+    }
+    #first, #second {
+        font-size: 20px;
+    }
 }

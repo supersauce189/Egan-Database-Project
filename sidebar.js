@@ -14,3 +14,9 @@ function hideSidebar() {
     const sidebar = document.querySelector(".sidebar");
     sidebar.style.display = "none";
 }
+var width = window.innerWidth;
+console.log(width);
+if (width <= 768) {
+    document.querySelector(".actual").style.display = "none";
+    document.getElementById("openSidebar").style.display = "block";
+}

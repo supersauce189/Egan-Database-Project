@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Dropdown</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f3f4f6;
+    }
+
+    .dropdown-container {
+      text-align: center;
+    }
+
+    .dropdown-trigger {
+      cursor: pointer;
+      font-size: 18px;
+      color: #007bff;
+      margin: 0;
+      padding: 10px;
+      border: 1px solid #007bff;
+      display: inline-block;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .dropdown-trigger:hover {
+      background-color: #e0f0ff;
+    }
+
+    .dropdown-menu {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .dropdown-menu li {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .dropdown-menu li:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-menu li:hover {
+      background-color: #f1f1f1;
+    }
+
+    .dropdown-menu.open {
+      max-height: 300px; /* Adjust to fit the number of items */
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="dropdown-container">
+    <p class="dropdown-trigger">Click me to see more</p>
+    <ul class="dropdown-menu">
+      <li>First Item</li>
+      <li>Second Item</li>
+      <li>Third Item</li>
+    </ul>
+  </div>
+  <script>
+    document.querySelector('.dropdown-trigger').addEventListener('click', () => {
+      const menu = document.querySelector('.dropdown-menu');
+      menu.classList.toggle('open');
+    });
+  </script>
+</body>
+</html>

@@ -3,6 +3,7 @@
   <head>
     <base target="_top">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Stats - Running Tracker</title>
     <link rel="icon" href="Assets/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,18 +18,18 @@
   </head>
   <body>
     <nav>
-      <button id="openSidebar"><i class="fas fa-bars icon"></i></button>
       <img id="logo" src="Assets/logo.png" alt="Egan logo">
+      <button id="openSidebar"><i class="fas fa-bars icon"></i></button>
       <ul class="sidebar">
         <li><button id="closeSidebar"><i class="fas fa-times"></i></button></li>
-        <li><a href="index.html">Home</a></li>
+        <li><a class="active" href="index.html">Home</a></li>
         <li><a href="leaderboard.html">Leaderboard</a></li>
-        <li><a class="active" href="myStats.html">My Stats</a></li>
+        <li><a href="myStats.html">My Stats</a></li>
       </ul>
       <ul class="actual">
-        <li class="active"><a href="index.html">Home</a></li>
+        <li><a class="active" href="index.html">Home</a></li>
         <li><a href="leaderboard.html">Leaderboard</a></li>
-        <li><a class="active" href="myStats.html">My Stats</a></li>
+        <li><a href="myStats.html">My Stats</a></li>
       </ul>
     </nav>
     <div id="actualContent">

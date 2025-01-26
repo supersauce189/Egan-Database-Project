@@ -8,7 +8,16 @@
 body, html {
     margin: 0;
     padding: 0;
-    height: 100%; /* Prevent scrolling if content exceeds viewport */
+    height: 100%;
+}
+/* Nav Bar */
+@media (max-width: 768px) {
+    nav {
+        padding: 0;
+    }
+    nav #logo {
+        width: 50vw;
+    }
 }
 nav {
     padding: 15px;
@@ -20,19 +29,17 @@ nav {
 #logo {
     width: 25vw;
 }
-ul {
+ul.actual {
     display: flex;
     list-style-type: none;
-}
-nav li {
-    padding: 10px 20px;
+    gap: 20px;
     font-size: 1.3vw;
 }
-li a {
+ul.actual li a {
     text-decoration: none;
     color: rgb(151, 151, 151);
 }
-a.active {
+ul.actual li a.active {
     color: black;
 }
 a:hover {
@@ -43,9 +50,9 @@ a:hover {
 .sidebar {
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
     height: 100vh;
-    width: 250px;
+    width: 100vw;
     z-index: 999;
     background-color: rgba(255, 255, 255, 0.027);
     backdrop-filter: blur(10px);
@@ -54,23 +61,28 @@ a:hover {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
+    gap: 20px;
+    padding-right: 18px;
+    padding-top: 15px;
+    list-style-type: none;
+    text-align: right;
 }
 .sidebar li {
     width: 100%;
 }
 .sidebar a {
     width: 100%;
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
 }
 #openSidebar {
     display: none;
     color: black;
     text-decoration: none;
-    font-size: 30px;
 }
 #openSidebar, #closeSidebar {
     background: none;
     border: none;
-}
-#closeSidebar {
     font-size: 30px;
 }

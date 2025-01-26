@@ -303,33 +303,8 @@ async function showStats(type) {
 }
 
 function toReadable(seconds) {
-  var hours = Math.floor(seconds / 3600);
-  var minutes = Math.floor(seconds / 60) - hours * 60;
-  var seconds = seconds - hours * 3600 - minutes * 60;
-  var isCounted = [false, false, false];
-  var names = ["hour", "minute", "second"];
-  var timeString = "";
-  if (hours > 0) {
-    timeString += (hours + ":");
-    isCounted[0] = true;
-  }
-  if (minutes > 0) {
-    timeString += (minutes + ":");
-    isCounted[1] = true;
-  }
-  if (seconds > 0) {
-    timeString += (seconds);
-    isCounted[2] = true;
-  }
-  for (let i = 0; i < 3; i++) {
-    if (isCounted[i] && !(isCounted[(i + 1) % 3]) && !(isCounted[(i + 2) % 3])) {
-      timeString = timeString.slice(0, -1);
-      if (timeString === "1") {
-        timeString += (" " + names[i]);
-      } else if (parseInt(timeString) > 1) {
-        timeString += (" " + names[i] + "s");
-      }
-    }
-  }
+  var minutes = Math.floor(seconds / 60);
+  var seconds = seconds - minutes * 60;
+  var timeString = (minutes > 0 ? (minutes + ":") : "00:") + (seconds > 0 ? (seconds) : "00");
   return timeString;
 }

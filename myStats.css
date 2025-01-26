@@ -166,8 +166,8 @@ form div.incorrect input {
 }
 canvas {
     margin-left: 5%;
-    width: 40vw !important;
-    height: 18vw !important;
+    width: 40vw;
+    height: 18vw;
 }
 /* Right Text */
 .current {
@@ -211,4 +211,60 @@ td {
 #noInfo {
     display: none;
     color: #f06272;
+}
+@media (max-width: 768px) {
+    body {
+        overflow: hidden;
+    }
+    h1 {
+        font-size: 35px;
+        margin-bottom: 2vh;
+    }
+    .flex {
+        flex-direction: column;
+        gap: 20px;
+        width: 90vw;
+    }
+    form {
+        padding: 0;
+        margin: 0;
+    }
+    #nameHeader {
+        margin-bottom: 1vh;
+    }
+    canvas {
+        width: 85vw !important;
+        margin: 0 7.5vw !important;
+    }
+    .current {
+        width: 85vw !important;
+        margin: 0 7.5vw !important;
+    }
+    .navbar a {
+        font-size: 15px;
+        margin: 0;
+    }
+    table {
+        width: 90vw !important;
+        margin: auto !important;
+    }
+    table {
+        width: 90vw;
+        margin-left: 5vw;
+        font-size: 20px !important;
+    }
+    table tr {
+        padding: 10px 0;
+    }
+    table tr td:first-of-type {
+        width: 15vw;
+    }
+    table tr th {
+        font-size: 15px;
+    }
+    table tr td {
+        padding: 15px 2px;
+        font-size: 10px;
+        font-size: 15px;
+    }
 }
