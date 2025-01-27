@@ -37,11 +37,28 @@ async function fetchData() {
 
 var name;
 
-var accounts = {"William Xing": "2", "Conner Daniel": "3"};
+var accounts;
+async function fetchAccounts() {
+  await fetch("Database Files/collectionsAccounts.json")
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok: " + response.statusText);
+      }
+      return response.json();
+    })
+    .then(data => {
+      accounts = data["accounts"];
+      console.log("Accounts Fetched");
+    })
+    .catch(error => {
+      console.error("Error: " + error);
+    })
+}
 form.addEventListener('submit', async function(e) {
     e.preventDefault();
     // Pulling information
     await fetchData();
+    await fetchAccounts();
     // Checking that both inputs are filled out
     var isValid = true;
     name = nameInput.value.trim();
@@ -304,7 +321,7 @@ async function showStats(type) {
 
 function toReadable(seconds) {
   var minutes = Math.floor(seconds / 60);
-  var seconds = seconds - minutes * 60;
-  var timeString = (minutes > 0 ? (minutes + ":") : "00:") + (seconds > 0 ? (seconds) : "00");
+  var seconds = Math.floor(seconds - minutes * 60);
+  var timeString = (minutes > 0 ? (minutes + ":") : "00:") + (seconds >= 10 ? (seconds) : seconds > 0 ? "0" + seconds : "00");
   return timeString;
 }

@@ -16,13 +16,24 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // File Writing Initialization
-import { writeFile } from 'fs/promises';
+import { writeFile, readFile } from 'fs/promises';
 
 // Variables
-var g7 = [];
-var g8 = ["Huynh P1"];
-var collectionList = ["1.17.25 1-Lap Huynh P1", "1.18.25 2-Lap Huynh P1", "1.18.25 Mile Huynh P1", "1.20.25 1-Lap Huynh P1", "1.20.25 2-Lap Huynh P1", "1.20.25 Mile Huynh P1"];
+var g7 = ["Troyer P1", "Troyer P2", "Troyer P4"];
+var g8 = ["Huynh P1", "Huynh P4", "Huynh P6", "Huynh P7", "Valencia P1", "Valencia P2", "Valencia P3", "Valencia P5", "Valencia P6"];
+var collectionList;
 var dbData = {};
+
+async function fetchCollection() {
+  try {
+    // Read the JSON file
+    const data = await readFile("Database Files/collectionsAccounts.json", "utf8");
+    collectionList = JSON.parse(data)["collections"]; // Parse the JSON
+    console.log("Collections Fetched");
+  } catch (error) {
+    console.error("Error reading the JSON file:", error);
+  }
+}
 
 function clean(arr) {
   var jsonObject = arr.reduce((acc, curr) => {
@@ -57,10 +68,16 @@ function clean(arr) {
 }
 
 async function writeDB() {
+  await fetchCollection();
+
+  if (!collectionList || collectionList.length === 0) {
+    console.error("Collection list is empty or undefined. Make sure the fetchCollection function works correctly.");
+    return;
+  }
+
   const promises = collectionList.map(async (element) => {
-    console.log("Current Collection List: " + element);
     // Finding grade level
-    var grade = 0;
+    var grade;
     var splitted = element.split(" ");
     var last2 = splitted.slice(-2).join(" ");
     if (g8.includes(last2)) {
@@ -72,11 +89,11 @@ async function writeDB() {
     }
     const colRef = collection(db, element);
     const querySnapshot = await getDocs(colRef);
+    console.log("Collection: " + element);
     querySnapshot.forEach((docSnap) => {
       var idSplitted = docSnap.id.split(" ");
       var name = idSplitted.slice(1).join(" ");
       var time = parseInt(docSnap.data().t);
-      console.log("Current Person: " + docSnap.id);
       if (Object.keys(dbData).includes(name)) {
         let date = splitted[0].replace(/\./g, "/");
         dbData[name]["All Runs"].push([(date + " " + splitted[1]), time]);
@@ -145,59 +162,47 @@ async function writeDB() {
     // Writing the dbData to the files
     const jsonArray = Object.entries(dbData).map(([key, value]) => ({ [key]: value }));
     await writeFile("Database Files/db.json", clean(jsonArray), 'utf8');
-    jsonArray.sort((a, b) => a[Object.keys(a)[0]]["Fastest 1-Lap Time"][1] - b[Object.keys(b)[0]]["Fastest 1-Lap Time"][1]);
     var jsonArrayCopy = JSON.parse(JSON.stringify(jsonArray));
-    jsonArrayCopy.forEach((element) => {
+    jsonArrayCopy = jsonArrayCopy.filter((element) => {
       let key = Object.keys(element)[0];
-      if (element[key]["Fastest 1-Lap Time"] === 0) {
-        jsonArrayCopy.splice(jsonArrayCopy.indexOf(element), 1);
-      }
+      return element[key]["Fastest 1-Lap Time"] !== 0;
     })
+    jsonArrayCopy.sort((a, b) => a[Object.keys(a)[0]]["Fastest 1-Lap Time"][1] - b[Object.keys(b)[0]]["Fastest 1-Lap Time"][1]);
     await writeFile("Database Files/1-Lap_Fastest.json", clean(jsonArrayCopy), 'utf8');
-    jsonArray.sort((a, b) => a[Object.keys(a)[0]]["Average 1-Lap Time"] - b[Object.keys(b)[0]]["Average 1-Lap Time"]);
     jsonArrayCopy = JSON.parse(JSON.stringify(jsonArray));
-    jsonArrayCopy.forEach((element) => {
+    jsonArrayCopy = jsonArrayCopy.filter((element) => {
       let key = Object.keys(element)[0];
-      if (element[key]["Average 1-Lap Time"] === 0) {
-        jsonArrayCopy.splice(jsonArrayCopy.indexOf(element), 1);
-      }
+      return element[key]["Average 1-Lap Time"] !== 0;
     })
+    jsonArrayCopy.sort((a, b) => a[Object.keys(a)[0]]["Average 1-Lap Time"] - b[Object.keys(b)[0]]["Average 1-Lap Time"]);
     await writeFile("Database Files/1-Lap_Average.json", clean(jsonArrayCopy), 'utf8');
-    jsonArray.sort((a, b) => a[Object.keys(a)[0]]["Fastest 2-Lap Time"][1] - b[Object.keys(b)[0]]["Fastest 2-Lap Time"][1]);
     jsonArrayCopy = JSON.parse(JSON.stringify(jsonArray));
-    jsonArrayCopy.forEach((element) => {
+    jsonArrayCopy = jsonArrayCopy.filter((element) => {
       let key = Object.keys(element)[0];
-      if (element[key]["Fastest 2-Lap Time"] === 0) {
-        jsonArrayCopy.splice(jsonArrayCopy.indexOf(element), 1);
-      }
+      return element[key]["Fastest 2-Lap Time"] !== 0;
     })
+    jsonArrayCopy.sort((a, b) => a[Object.keys(a)[0]]["Fastest 2-Lap Time"][1] - b[Object.keys(b)[0]]["Fastest 2-Lap Time"][1]);
     await writeFile("Database Files/2-Lap_Fastest.json", clean(jsonArrayCopy), 'utf8');
-    jsonArray.sort((a, b) => a[Object.keys(a)[0]]["Average 2-Lap Time"] - b[Object.keys(b)[0]]["Average 2-Lap Time"]);
     jsonArrayCopy = JSON.parse(JSON.stringify(jsonArray));
-    jsonArrayCopy.forEach((element) => {
+    jsonArrayCopy = jsonArrayCopy.filter((element) => {
       let key = Object.keys(element)[0];
-      if (element[key]["Average 2-Lap Time"] === 0) {
-        jsonArrayCopy.splice(jsonArrayCopy.indexOf(element), 1);
-      }
+      return element[key]["Average 2-Lap Time"] !== 0;
     })
+    jsonArrayCopy.sort((a, b) => a[Object.keys(a)[0]]["Average 2-Lap Time"] - b[Object.keys(b)[0]]["Average 2-Lap Time"]);
     await writeFile("Database Files/2-Lap_Average.json", clean(jsonArrayCopy), 'utf8');
-    jsonArray.sort((a, b) => a[Object.keys(a)[0]]["Fastest Mile Time"][1] - b[Object.keys(b)[0]]["Fastest Mile Time"][1]);
     jsonArrayCopy = JSON.parse(JSON.stringify(jsonArray));
-    jsonArrayCopy.forEach((element) => {
+    jsonArrayCopy = jsonArrayCopy.filter((element) => {
       let key = Object.keys(element)[0];
-      if (element[key]["Fastest Mile Time"] === 0) {
-        jsonArrayCopy.splice(jsonArrayCopy.indexOf(element), 1);
-      }
+      return element[key]["Fastest Mile Time"] !== 0;
     })
+    jsonArrayCopy.sort((a, b) => a[Object.keys(a)[0]]["Fastest Mile Time"][1] - b[Object.keys(b)[0]]["Fastest Mile Time"][1]);
     await writeFile("Database Files/Mile_Fastest.json", clean(jsonArrayCopy), 'utf8');
-    jsonArray.sort((a, b) => a[Object.keys(a)[0]]["Average Mile Time"] - b[Object.keys(b)[0]]["Average Mile Time"]);
     jsonArrayCopy = JSON.parse(JSON.stringify(jsonArray));
-    jsonArrayCopy.forEach((element) => {
+    jsonArrayCopy = jsonArrayCopy.filter((element) => {
       let key = Object.keys(element)[0];
-      if (element[key]["Average Mile Time"] === 0) {
-        jsonArrayCopy.splice(jsonArrayCopy.indexOf(element), 1);
-      }
+      return element[key]["Average Mile Time"] !== 0;
     })
+    jsonArrayCopy.sort((a, b) => a[Object.keys(a)[0]]["Average Mile Time"] - b[Object.keys(b)[0]]["Average Mile Time"]);
     await writeFile("Database Files/Mile_Average.json", clean(jsonArrayCopy), 'utf8');
     console.log("File successfully written!");
   } catch (err) {

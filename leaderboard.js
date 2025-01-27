@@ -55,7 +55,8 @@ async function editLeaderboard() {
     // Filter elements
     console.log(leaderboard);
     var entries = Object.entries(leaderboard);
-    var filteredEntries = entries.filter((entry) => (genderText === "Select an option" || entry[1]["Gender"] === genderText) && (gradeText === "Select an option" || entry[1][2] === gradeText) && (periodText === "Select an option" || entry[1][3] === periodText) && (teacherText === "Select an option" || entry[1][4] === teacherText));
+    console.log(entries);
+    var filteredEntries = entries.filter((entry) => (genderText === "Select an option" || entry[1]["Gender"] === genderText) && (gradeText === "Select an option" || entry[1]["Grade"] === gradeText) && (periodText === "Select an option" || entry[1]["Period"] === periodText) && (teacherText === "Select an option" || entry[1]["Teacher"] === teacherText));
     // Check if dictionary is blank
     if (filteredEntries.length === 0) {
       heading.innerText = "No people found";
@@ -65,7 +66,7 @@ async function editLeaderboard() {
       return;
     }
   
-    var first15 = filteredEntries.slice(0, 15);
+    filteredEntries = filteredEntries.slice(0, 15);
   
     let i = 0;
     // Adding / removing date column based on Average / Fastest
@@ -93,8 +94,8 @@ async function editLeaderboard() {
       console.log("Cleaned: " + cleaned);
       // Converting time
       var minutes = Math.floor(cleaned[1] / 60);
-      var seconds = cleaned[1] - minutes * 60;
-      cleaned[1] = (minutes > 0 ? (minutes + ":") : "00:") + (seconds > 0 ? (seconds) : "00");
+      var seconds = Math.floor(cleaned[1] - minutes * 60);
+      cleaned[1] = (minutes > 0 ? (minutes + ":") : "00:") + (seconds >= 10 ? (seconds) : seconds > 0 ? "0" + seconds : "00");
       // Adding to the leaderboard
       const newRow = document.createElement("tr");
       const rankCell = document.createElement("td");
