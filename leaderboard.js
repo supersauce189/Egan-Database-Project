@@ -2,9 +2,6 @@
 document.querySelector('#dropdown-trigger').addEventListener('click', () => {
   document.querySelector("form").classList.toggle('open');
 });
-// Editing first table heading on phone screen
-const first = document.querySelector("thead tr th");
-first.innerText = "Rank";
 // Changing leaderboard on dropdown change
 const dropdowns = document.querySelectorAll("select");
 dropdowns.forEach(dropdown => {
@@ -25,22 +22,9 @@ async function editLeaderboard() {
     // Grabbing the correct file
     var dropdownSplitted = selectedText.split(" ");
     var fileName = "Database Files/" + dropdownSplitted[1] + "_" + dropdownSplitted[0] + ".json";
-    var leaderboard;
-  
-    await fetch(fileName)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok: " + response.statusText);
-        }
-        return response.json();
-      })
-      .then(data => {
-        leaderboard = data;
-        console.log("Leaderboard Fetched");
-      })
-      .catch(error => {
-        console.error("Error: " + error);
-      })
+    var response = await fetch(fileName);
+    var leaderboard = await response.json();
+
     
     // Removing entries based on filter options
     let genderElement = document.getElementById("gender");
