@@ -213,9 +213,6 @@ td {
     color: #f06272;
 }
 @media (max-width: 768px) {
-    body {
-        overflow: hidden;
-    }
     h1 {
         font-size: 35px;
         margin-bottom: 2vh;

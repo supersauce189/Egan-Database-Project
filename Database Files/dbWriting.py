@@ -49,7 +49,7 @@ for row in allValues:
     for j in range(len(firstRow)):
         try:
             if (":" not in row[j + 6]):
-                print(row[3] + row[j + 6])
+
                 continue
         except:
             continue

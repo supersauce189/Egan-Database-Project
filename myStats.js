@@ -62,6 +62,7 @@ form.addEventListener('submit', async function(e) {
     // Checking that both inputs are filled out
     var isValid = true;
     name = nameInput.value.trim();
+    name = name.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
     if (name === "" || name === null) {
       nameInput.parentElement.classList.add("incorrect");
       errorText.innerText = "Please fill out both fields!";
