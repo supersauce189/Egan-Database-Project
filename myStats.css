@@ -291,4 +291,13 @@ td {
         font-size: 10px;
         font-size: 15px;
     }
+    .ranking-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-bottom: 10px;
+    }
+    .ranking-card {
+        width: 85vw !important;
+    }
 }

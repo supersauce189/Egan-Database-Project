@@ -235,7 +235,7 @@ async function showStats(type) {
     }
   })
 
-  var genderGradeText = grade + "th grade " + (gender === "Male" ? "Boys" : gender === "Girl" ? "Girls" : Other)
+  var genderGradeText = grade + "th grade " + (gender === "Male" ? "Boys" : gender === "Female" ? "Girls" : "Other")
   document.getElementById("fastestClassIcon").innerText = "#" + fastestClassRanking;
   document.getElementById("fastestGenderGrade").innerText = genderGradeText;
   document.getElementById("fastestGenderGradeIcon").innerText = "#" + fastestGradeGenderRanking;
