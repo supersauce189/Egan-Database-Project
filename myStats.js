@@ -144,11 +144,11 @@ async function showStats(type) {
     .catch(error => {
       console.error("Error: " + error);
     })
-    Object.keys(fastestJson).forEach((key, index) => {
-      if (key === name) {
-        fastestTimeRanking = index + 1;
-      }
-    })
+  Object.keys(fastestJson).forEach((key, index) => {
+    if (key === name) {
+      fastestTimeRanking = index + 1;
+    }
+  })
   var averageTime = toReadable(person["Average " + type + " Time"]);
   var averageTimeRanking;
   var averageJson;
@@ -182,10 +182,66 @@ async function showStats(type) {
       break;
     }
   }
-  document.getElementById("fastest").innerHTML = "<strong>Fastest Time (" + fastestTimeDate + "): </strong>" + fastestTime + " (#" + fastestTimeRanking + ")";
-  document.getElementById("average").innerHTML = "<strong>Average Time: </strong>" + averageTime + " (#" + averageTimeRanking + ")";
+  document.getElementById("fastest").innerHTML = "<strong>Fastest Time (" + fastestTimeDate + "): </strong>" + fastestTime + " (School Ranking: #" + fastestTimeRanking + ")";
+  document.getElementById("average").innerHTML = "<strong>Average Time: </strong>" + averageTime + " (School Ranking: #" + averageTimeRanking + ")";
   document.getElementById("recent").innerHTML = "<strong>Most Recent Time (" + mostRecentDate + "): </strong>" + mostRecent;
   document.getElementById("totalLaps").innerHTML = "<strong>Total Laps: </strong>" + person["Total Laps"];
+  // Writing to the ranking cards
+  var grade = person["Grade"];
+  var period = person["Period"];
+  var teacher = person["Teacher"];
+  var gender = person["Gender"];
+
+  var fastestClassJson = JSON.parse(JSON.stringify(fastestJson));
+  var averageClassJson = JSON.parse(JSON.stringify(averageJson));
+  var fastestGradeGenderJson = JSON.parse(JSON.stringify(fastestJson));
+  var averageGradeGenderJson = JSON.parse(JSON.stringify(averageJson));
+  fastestClassJson = Object.fromEntries(
+    Object.entries(fastestClassJson).filter(([key, value]) => value.Period === period && value.Teacher === teacher && value.Grade === grade)
+  );
+  averageClassJson = Object.fromEntries(
+    Object.entries(averageClassJson).filter(([key, value]) => value.Period === period && value.Teacher === teacher && value.Grade === grade)
+  );
+  fastestGradeGenderJson = Object.fromEntries(
+    Object.entries(fastestGradeGenderJson).filter(([key, value]) => value.Gender === gender && value.Grade === grade)
+  );
+  averageGradeGenderJson = Object.fromEntries(
+    Object.entries(averageGradeGenderJson).filter(([key, value]) => value.Gender === gender && value.Grade === grade)
+  );
+
+  var fastestClassRanking;
+  var averageClassRanking;
+  var fastestGradeGenderRanking;
+  var averageGradeGenderRanking;
+
+  Object.keys(fastestClassJson).forEach((key, index) => {
+    if (key === name) {
+      fastestClassRanking = index + 1;
+    }
+  })
+  Object.keys(averageClassJson).forEach((key, index) => {
+    if (key === name) {
+      averageClassRanking = index + 1;
+    }
+  })
+  Object.keys(fastestGradeGenderJson).forEach((key, index) => {
+    if (key === name) {
+      fastestGradeGenderRanking = index + 1;
+    }
+  })
+  Object.keys(averageGradeGenderJson).forEach((key, index) => {
+    if (key === name) {
+      averageGradeGenderRanking = index + 1;
+    }
+  })
+
+  var genderGradeText = grade + "th grade " + (gender === "Male" ? "Boys" : gender === "Girl" ? "Girls" : Other)
+  document.getElementById("fastestClassIcon").innerText = "#" + fastestClassRanking;
+  document.getElementById("fastestGenderGrade").innerText = genderGradeText;
+  document.getElementById("fastestGenderGradeIcon").innerText = "#" + fastestGradeGenderRanking;
+  document.getElementById("averageClassIcon").innerText = "#" + averageClassRanking;
+  document.getElementById("averageGenderGrade").innerText = genderGradeText;
+  document.getElementById("averageGenderGradeIcon").innerText = "#" + averageGradeGenderRanking;
   // Writing to the table
   var tableDates = [];
   var tableTimes = [];
@@ -200,7 +256,12 @@ async function showStats(type) {
       tableDates.push(current[0].split(" ")[0]);
       tableTimes.push(current[1]);
       if (tableDates.length > 1) {
-        changes.push(tableTimes[tableTimes.length - 1] - tableTimes[tableTimes.length - 2]);
+        var change = tableTimes[tableTimes.length - 1] - tableTimes[tableTimes.length - 2];
+        if (change > 0) {
+          changes.push("+" + change);
+        } else {
+          changes.push(change);
+        }
       }
     }
   }

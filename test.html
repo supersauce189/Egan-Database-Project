@@ -1,50 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Animated Dropdown</title>
-  <style>
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .dropdown-trigger {
-      transition: background-color 0.3s ease;
-    }
-
-    .dropdown-menu {
-      overflow: hidden;
-      max-height: 0;
-      opacity: 0;
-      transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
-    }
-
-    .dropdown-menu.open {
-      max-height: 300px; /* Adjust to fit the number of items */
-      opacity: 1;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rankings</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: left;
+            margin: 40px;
+            background-color: #f8f9fa;
+        }
+        .stats-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+        }
+        h2 {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .performance-stat {
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .subtext {
+            font-weight: normal;
+            color: #666;
+        }
+        .ranking-container {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .ranking-card {
+            background: #fff8e1; /* Soft background */
+            padding: 10px 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            font-size: 1em;
+            border: 1px solid #ffe082; /* Light border */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            white-space: nowrap;
+        }
+        .ranking-number {
+            color: #007bff;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="dropdown-container">
-        <p class="dropdown-trigger">Click me to see more</p>
-        <ul class="dropdown-menu">
-        <li>First Item</li>
-        <li>Second Item</li>
-        <li>Third Item</li>
-        </ul>
+    <div class="stats-container">
+        <h2>🏆 Performance Stats</h2>
+        <p class="performance-stat">Fastest Time (1/10/24): 1:12 <span class="subtext">(School Ranking: #9)</span></p>
+
+        <div class="ranking-container">
+            <div class="ranking-card">
+                <span>7th Grade Girls</span>
+                <span class="ranking-number">#50</span>
+            </div>
+            <div class="ranking-card">
+                <span>Overall 2-Lap</span>
+                <span class="ranking-number">#17</span>
+            </div>
+        </div>
+
+        <p class="performance-stat">Average Time: 1:16 <span class="subtext">(School Ranking: #4)</span></p>
+        <p class="performance-stat">Most Recent Time (1/11/24): 1:20</p>
+        <p class="performance-stat">Total Laps: 14</p>
+
+        <hr style="margin: 15px 0;">
+
+        <p>Keep pushing to improve your personal bests!</p>
     </div>
-  </div>
-  <script>
-    document.querySelector('.dropdown-trigger').addEventListener('click', () => {
-      const menu = document.querySelector('.dropdown-menu');
-      menu.classList.toggle('open');
-    });
-  </script>
 </body>
 </html>
