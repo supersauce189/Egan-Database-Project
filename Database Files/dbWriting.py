@@ -43,7 +43,7 @@ for i in range(len(firstRow)):
 allValues = worksheet.get_all_values()
 allValues.pop(0)
 # Iterating through all rows
-for row in allValues:
+for row in reversed(allValues):
     print(row)
     data["accounts"][row[3]] = row[4]
     for j in range(len(firstRow)):
