@@ -1,16 +1,7 @@
 // Firebase Initialization
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyB2I7zmvKxnVWtYXWB0G_s_GxEPWvZWMtA",
-  authDomain: "huynhdb-18c34.firebaseapp.com",
-  projectId: "huynhdb-18c34",
-  storageBucket: "huynhdb-18c34.firebasestorage.app",
-  messagingSenderId: "961005293204",
-  appId: "1:961005293204:web:6561a6616fa94a02926e81",
-  measurementId: "G-0NJQNYZ3T0"
-};
+import firebaseConfig from "./firebaseConfig.js";
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
